@@ -1,14 +1,42 @@
+import { faker } from '@faker-js/faker';
 
 const getBuscarProdutoId = require('../produtos/requests/getBuscarProdutoId')
+const postProdutos = require('../produtos/requests/postProdutos')
+const postUsuarios = require('../usuarios/requests/postUsuarios')
+const postLogin = require('../login/requests/postLogin')
 
 describe('GET Produtos por ID', () => {
+    let jwt, _id
+    beforeEach('Cadastrar usuário, fazer login e cadastrar produto', function () {
+        const nome = faker.person.fullName()
+        const email = faker.internet.email()
+        const password = faker.internet.password()
+        const administrador = 'true'
+    
+        cy.api_postUsuarios(nome, email, password, administrador).then((response) => {
+            expect(response.status).to.eq(201)
+    
+            return cy.api_postLogin(email, password)
+        }).then((response) => {
+            expect(response.status).to.eq(200)
+            jwt = response.body.authorization
+    
+            const nomeProduto = faker.commerce.productName()
+            const preco = faker.number.int()
+            const descricao = faker.commerce.productDescription()
+            const quantidade = faker.number.int()
+    
+            return cy.api_postProdutos(nomeProduto, preco, descricao, quantidade, jwt)
+        }).then((response) => {
+            expect(response.status).to.eq(201)
+            _id = response.body._id
+        })
+    })
     it('deve buscar produto pelo id', () => {
-        const id = '2KDSHTlVwqDIpmfi'
-
-        cy.api_getBuscarProdutoId(id).then((response) => {
+        cy.api_getBuscarProdutoId(_id).then((response) => {
             expect(response.status).to.eq(200)
             expect(response.body).to.be.not.null
-            expect(response.body).to.have.property('_id', id)
+            expect(response.body).to.have.property('_id', _id)
         })
     })
 })

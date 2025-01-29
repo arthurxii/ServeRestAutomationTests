@@ -1,14 +1,14 @@
 {
   "stats": {
     "suites": 2,
-    "tests": 2,
-    "passes": 2,
+    "tests": 3,
+    "passes": 3,
     "pending": 0,
     "failures": 0,
-    "start": "2025-01-29T13:56:49.301Z",
-    "end": "2025-01-29T13:56:50.202Z",
-    "duration": 901,
-    "testsRegistered": 2,
+    "start": "2025-01-29T20:45:40.946Z",
+    "end": "2025-01-29T20:45:41.876Z",
+    "duration": 930,
+    "testsRegistered": 3,
     "passPercent": 100,
     "pendingPercent": 0,
     "other": 0,
@@ -18,25 +18,25 @@
   },
   "results": [
     {
-      "uuid": "2dc0afa0-cb2c-4a41-abaf-39833dd576bd",
+      "uuid": "2da9de31-4f66-4402-b696-f36c57b296f0",
       "title": "",
-      "fullFile": "cypress\\tests\\api\\usuarios\\deleteUsuarios.cy.js",
-      "file": "cypress\\tests\\api\\usuarios\\deleteUsuarios.cy.js",
+      "fullFile": "cypress\\tests\\api\\usuarios\\getBuscarUsuariosId.cy.js",
+      "file": "cypress\\tests\\api\\usuarios\\getBuscarUsuariosId.cy.js",
       "beforeHooks": [],
       "afterHooks": [],
       "tests": [],
       "suites": [
         {
-          "uuid": "e078487d-79e0-4d60-afb1-c23bf1e734a5",
-          "title": "DELETE Usuarios",
+          "uuid": "2342aeb7-6292-4634-b97f-8125317e1f83",
+          "title": "GET Usuarios por ID",
           "fullFile": "",
           "file": "",
           "beforeHooks": [],
           "afterHooks": [],
           "tests": [
             {
-              "title": "deve excluir usuario com sucesso",
-              "fullTitle": "DELETE Usuarios deve excluir usuario com sucesso",
+              "title": "deve buscar usuário pelo ID",
+              "fullTitle": "GET Usuarios por ID deve buscar usuário pelo ID",
               "timedOut": null,
               "duration": 448,
               "state": "passed",
@@ -45,17 +45,17 @@
               "fail": false,
               "pending": false,
               "context": null,
-              "code": "cy.api_deleteUsuarios(_id).then(response => {\n  expect(response.status).to.eq(200);\n  expect(response.body.message).to.contain('Registro excluído com sucesso');\n});",
+              "code": "cy.api_getBuscarUsuarioId(_id).then(response => {\n  expect(response.status).to.eq(200);\n  expect(response.body).to.be.not.null;\n  expect(response.body).to.have.property('_id', _id);\n});",
               "err": {},
-              "uuid": "fa1ee5cc-29b6-4856-ad1c-54fc7a92220f",
-              "parentUUID": "e078487d-79e0-4d60-afb1-c23bf1e734a5",
+              "uuid": "1258edc4-6f4a-489c-b89d-ffe8f50edaf5",
+              "parentUUID": "2342aeb7-6292-4634-b97f-8125317e1f83",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "fa1ee5cc-29b6-4856-ad1c-54fc7a92220f"
+            "1258edc4-6f4a-489c-b89d-ffe8f50edaf5"
           ],
           "failures": [],
           "pending": [],
@@ -66,7 +66,7 @@
           "_timeout": 2000
         },
         {
-          "uuid": "8d5d3cbc-3904-4df4-b722-443d25ebf30c",
+          "uuid": "031345fc-2090-41f8-b0ec-d1852303c5af",
           "title": "Erros",
           "fullFile": "",
           "file": "",
@@ -74,32 +74,51 @@
           "afterHooks": [],
           "tests": [
             {
-              "title": "não deve excluir com id inexistente",
-              "fullTitle": "Erros não deve excluir com id inexistente",
+              "title": "não deve buscar usuário com id inexistente",
+              "fullTitle": "Erros não deve buscar usuário com id inexistente",
               "timedOut": null,
-              "duration": 429,
+              "duration": 219,
               "state": "passed",
               "speed": "fast",
               "pass": true,
               "fail": false,
               "pending": false,
               "context": null,
-              "code": "const idInexistente = _faker.faker.number.int();\ncy.api_deleteUsuarios(idInexistente).then(response => {\n  expect(response.status).to.eq(200);\n  expect(response.body.message).to.contain('Nenhum registro excluído');\n});",
+              "code": "const id = '0uxuPY2cbmQhpEz1';\ncy.api_getBuscarUsuarioId(id).then(response => {\n  expect(response.status).to.eq(400);\n  expect(response.body).to.have.property('message', 'Usuário não encontrado');\n});",
               "err": {},
-              "uuid": "9fa6b82d-9d90-4e00-bc46-f71a1efeafd9",
-              "parentUUID": "8d5d3cbc-3904-4df4-b722-443d25ebf30c",
+              "uuid": "66355734-2335-4166-a77f-6f89b22959fb",
+              "parentUUID": "031345fc-2090-41f8-b0ec-d1852303c5af",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "não deve buscar usuário com id nulo",
+              "fullTitle": "Erros não deve buscar usuário com id nulo",
+              "timedOut": null,
+              "duration": 227,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const id = null;\ncy.api_getBuscarUsuarioId(id).then(response => {\n  expect(response.status).to.eq(400);\n  expect(response.body).to.have.property('message', 'Usuário não encontrado');\n});",
+              "err": {},
+              "uuid": "b6a98d3e-e297-40a2-8a63-b3f78bdb02b9",
+              "parentUUID": "031345fc-2090-41f8-b0ec-d1852303c5af",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "9fa6b82d-9d90-4e00-bc46-f71a1efeafd9"
+            "66355734-2335-4166-a77f-6f89b22959fb",
+            "b6a98d3e-e297-40a2-8a63-b3f78bdb02b9"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 429,
+          "duration": 446,
           "root": false,
           "rootEmpty": false,
           "_timeout": 2000

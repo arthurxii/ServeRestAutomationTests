@@ -1,14 +1,27 @@
+import { faker } from '@faker-js/faker';
 
 const getBuscarUsuarioId = require('../usuarios/requests/getBuscarUsuarioId')
+const postUsuarios = require('../usuarios/requests/postUsuarios')
 
 describe('GET Usuarios por ID', () => {
-    it('deve buscar usuário pelo ID', () => {
-        const id = '0bNQgMYhHZjCbO7y'
+    let _id
 
-        cy.api_getBuscarUsuarioId(id).then((response) => {
+    beforeEach('Cadastrar usuário', function (){
+        const nome = faker.person.fullName()
+        const email = faker.internet.email()
+        const password = faker.internet.password()
+        const administrador = Math.random() < 0.5 ? 'true' : 'false'
+
+        cy.api_postUsuarios(nome, email, password, administrador).then((response) => {
+            expect(response.status).to.eq(201)
+            _id = response.body._id
+        })
+    })
+    it('deve buscar usuário pelo ID', () => {
+        cy.api_getBuscarUsuarioId(_id).then((response) => {
             expect(response.status).to.eq(200)
             expect(response.body).to.be.not.null
-            expect(response.body).to.have.property('_id', id)
+            expect(response.body).to.have.property('_id', _id)
         })
     })
 })
