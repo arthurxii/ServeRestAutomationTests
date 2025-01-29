@@ -1,0 +1,203 @@
+{
+  "stats": {
+    "suites": 2,
+    "tests": 5,
+    "passes": 5,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-01-29T14:00:34.090Z",
+    "end": "2025-01-29T14:00:35.669Z",
+    "duration": 1579,
+    "testsRegistered": 5,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "34c94734-4637-4fa5-b40c-ceabf2266d6b",
+      "title": "",
+      "fullFile": "cypress\\tests\\api\\usuarios\\putUsuarios.cy.js",
+      "file": "cypress\\tests\\api\\usuarios\\putUsuarios.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [
+        {
+          "title": "não deve editar com campos obrigatórios vazios",
+          "fullTitle": "não deve editar com campos obrigatórios vazios",
+          "timedOut": null,
+          "duration": 231,
+          "state": "passed",
+          "speed": "fast",
+          "pass": true,
+          "fail": false,
+          "pending": false,
+          "context": null,
+          "code": "const nome = '';\nconst email = '';\nconst password = '';\nconst administrador = '';\nconst _id = _faker.faker.number.int();\ncy.api_putUsuarios(_id, nome, email, password, administrador).then(response => {\n  expect(response.status).to.eq(400);\n  expect(response.body).to.have.all.keys('nome', 'email', 'password', 'administrador');\n  expect(response.body).to.deep.include({\n    nome: 'nome não pode ficar em branco',\n    email: 'email não pode ficar em branco',\n    password: 'password não pode ficar em branco',\n    administrador: \"administrador deve ser 'true' ou 'false'\"\n  });\n});",
+          "err": {},
+          "uuid": "6f927b40-2ba9-40f9-8454-9cf4ef03eaeb",
+          "parentUUID": "34c94734-4637-4fa5-b40c-ceabf2266d6b",
+          "isHook": false,
+          "skipped": false
+        }
+      ],
+      "suites": [
+        {
+          "uuid": "eee7d89b-8487-4e26-a708-9ee814e81b7f",
+          "title": "PUT Usuarios",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "deve editar usuario com sucesso",
+              "fullTitle": "PUT Usuarios deve editar usuario com sucesso",
+              "timedOut": null,
+              "duration": 434,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const nome = _faker.faker.person.fullName();\nconst email = _faker.faker.internet.email();\nconst password = _faker.faker.internet.password();\nconst administrador = Math.random() < 0.5 ? 'true' : 'false';\ncy.api_putUsuarios(_id, nome, email, password, administrador).then(response => {\n  expect(response.status).to.eq(200);\n  expect(response.body.message).to.contain('Registro alterado com sucesso');\n});",
+              "err": {},
+              "uuid": "8d0ca28f-6076-45f2-8417-7baf1325a486",
+              "parentUUID": "eee7d89b-8487-4e26-a708-9ee814e81b7f",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "deve cadastrar quando o id não existir",
+              "fullTitle": "PUT Usuarios deve cadastrar quando o id não existir",
+              "timedOut": null,
+              "duration": 218,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const nome = _faker.faker.person.fullName();\nconst email = _faker.faker.internet.email();\nconst password = _faker.faker.internet.password();\nconst administrador = Math.random() < 0.5 ? 'true' : 'false';\nconst novoId = _faker.faker.number.int();\ncy.api_putUsuarios(novoId, nome, email, password, administrador).then(response => {\n  expect(response.status).to.eq(201);\n  expect(response.body.message).to.contain('Cadastro realizado com sucesso');\n  expect(response.body._id).is.not.null;\n});",
+              "err": {},
+              "uuid": "faccb03b-58c3-4d1e-b5ee-04e98f4ba984",
+              "parentUUID": "eee7d89b-8487-4e26-a708-9ee814e81b7f",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "8d0ca28f-6076-45f2-8417-7baf1325a486",
+            "faccb03b-58c3-4d1e-b5ee-04e98f4ba984"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 652,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "4d975efb-a812-4d9c-827c-aac0dc49a752",
+          "title": "Erros",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "não deve editar com email inválido",
+              "fullTitle": "Erros não deve editar com email inválido",
+              "timedOut": null,
+              "duration": 216,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const nome = _faker.faker.person.fullName();\nconst email = 'teste@teste';\nconst password = _faker.faker.internet.password();\nconst administrador = Math.random() < 0.5 ? 'true' : 'false';\nconst _id = _faker.faker.number.int();\ncy.api_putUsuarios(_id, nome, email, password, administrador).then(response => {\n  expect(response.status).to.eq(400);\n  expect(response.body).to.have.property('email', 'email deve ser um email válido');\n});",
+              "err": {},
+              "uuid": "d251dc7d-7c17-42c5-8230-f7456c953584",
+              "parentUUID": "4d975efb-a812-4d9c-827c-aac0dc49a752",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "não deve editar com email existente",
+              "fullTitle": "Erros não deve editar com email existente",
+              "timedOut": null,
+              "duration": 435,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "let _id;\nconst nome = _faker.faker.person.fullName();\nconst email = _faker.faker.internet.email();\nconst password = _faker.faker.internet.password();\nconst administrador = Math.random() < 0.5 ? 'true' : 'false';\ncy.api_postUsuarios(nome, email, password, administrador).then(response => {\n  expect(response.status).to.eq(201);\n  _id = response.body._id;\n});\ncy.api_putUsuarios(_id, nome, email, password, administrador).then(response => {\n  expect(response.status).to.eq(400);\n  expect(response.body.message).to.contain('Este email já está sendo usado');\n});",
+              "err": {},
+              "uuid": "a6389b1f-19f7-48e7-97cf-6a2cb02d4918",
+              "parentUUID": "4d975efb-a812-4d9c-827c-aac0dc49a752",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "d251dc7d-7c17-42c5-8230-f7456c953584",
+            "a6389b1f-19f7-48e7-97cf-6a2cb02d4918"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 651,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [
+        "6f927b40-2ba9-40f9-8454-9cf4ef03eaeb"
+      ],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 231,
+      "root": true,
+      "rootEmpty": false,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

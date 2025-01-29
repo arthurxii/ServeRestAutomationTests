@@ -1,0 +1,182 @@
+{
+  "stats": {
+    "suites": 2,
+    "tests": 4,
+    "passes": 4,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-01-29T14:00:07.967Z",
+    "end": "2025-01-29T14:00:09.240Z",
+    "duration": 1273,
+    "testsRegistered": 4,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "ba9effdd-e1d9-4ced-8d99-3971a4677d5c",
+      "title": "",
+      "fullFile": "cypress\\tests\\api\\produtos\\getListarProdutos.cy.js",
+      "file": "cypress\\tests\\api\\produtos\\getListarProdutos.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "acec1a33-d865-4aff-ba74-763ea56085cb",
+          "title": "GET Produtos",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "deve listar produtos com sucesso",
+              "fullTitle": "GET Produtos deve listar produtos com sucesso",
+              "timedOut": null,
+              "duration": 593,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.api_getListarProdutos().then(response => {\n  expect(response.status).to.eq(200);\n  expect(response.body).to.be.not.null;\n  expect(response.body.produtos.length).to.be.greaterThan(0);\n});",
+              "err": {},
+              "uuid": "338cfab0-a2fe-4fc3-9faf-01e5220579bb",
+              "parentUUID": "acec1a33-d865-4aff-ba74-763ea56085cb",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "338cfab0-a2fe-4fc3-9faf-01e5220579bb"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 593,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "92f805f8-bf2d-4033-9b01-e90d80eebf36",
+          "title": "Erros",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "não deve listar produtos com preço inválido",
+              "fullTitle": "Erros não deve listar produtos com preço inválido",
+              "timedOut": null,
+              "duration": 213,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const preco = 'teste';\ncy.api_getListarProdutosParams('preco', preco).then(response => {\n  expect(response.status).to.eq(400);\n  expect(response.body).to.have.property('preco', 'preco deve ser um número');\n});",
+              "err": {},
+              "uuid": "9772c491-2724-4e43-a9ba-89dd8f44a7aa",
+              "parentUUID": "92f805f8-bf2d-4033-9b01-e90d80eebf36",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "não deve listar produtos com quantidade inválida",
+              "fullTitle": "Erros não deve listar produtos com quantidade inválida",
+              "timedOut": null,
+              "duration": 215,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const quantidade = 'teste';\ncy.api_getListarProdutosParams('quantidade', quantidade).then(response => {\n  expect(response.status).to.eq(400);\n  expect(response.body).to.have.property('quantidade', 'quantidade deve ser um número');\n});",
+              "err": {},
+              "uuid": "e2cc2981-a727-4644-a3d8-fce7a8beb418",
+              "parentUUID": "92f805f8-bf2d-4033-9b01-e90d80eebf36",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "não deve listar produtos com id inexistente",
+              "fullTitle": "Erros não deve listar produtos com id inexistente",
+              "timedOut": null,
+              "duration": 214,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const id = '0Yl5F13ToBclD2Sz';\ncy.api_getListarProdutosParams('_id', id).then(response => {\n  expect(response.status).to.eq(200);\n  expect(response.body.quantidade).to.eq(0);\n});",
+              "err": {},
+              "uuid": "bc6b2612-3cc8-458c-b74c-e50e6b2f0369",
+              "parentUUID": "92f805f8-bf2d-4033-9b01-e90d80eebf36",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "9772c491-2724-4e43-a9ba-89dd8f44a7aa",
+            "e2cc2981-a727-4644-a3d8-fce7a8beb418",
+            "bc6b2612-3cc8-458c-b74c-e50e6b2f0369"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 642,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

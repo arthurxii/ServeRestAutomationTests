@@ -1,0 +1,201 @@
+{
+  "stats": {
+    "suites": 2,
+    "tests": 5,
+    "passes": 5,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-01-29T14:00:16.821Z",
+    "end": "2025-01-29T14:00:21.632Z",
+    "duration": 4811,
+    "testsRegistered": 5,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "d9d929c5-3192-472c-b412-c9c616565aaf",
+      "title": "",
+      "fullFile": "cypress\\tests\\api\\produtos\\putProdutos.cy.js",
+      "file": "cypress\\tests\\api\\produtos\\putProdutos.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "dd1d18dd-52ed-447f-88b7-75f2b8637f64",
+          "title": "PUT Produtos",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "deve editar produto com sucesso",
+              "fullTitle": "PUT Produtos deve editar produto com sucesso",
+              "timedOut": null,
+              "duration": 873,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const nome = _faker.faker.commerce.productName();\nconst preco = _faker.faker.number.int();\nconst descricao = _faker.faker.commerce.productDescription();\nconst quantidade = _faker.faker.number.int();\ncy.api_putProdutos(_id, nome, preco, descricao, quantidade, jwt).then(response => {\n  expect(response.status).to.eq(200);\n  expect(response.body.message).to.contain('Registro alterado com sucesso');\n});",
+              "err": {},
+              "uuid": "a07962eb-dd6b-48b7-b0df-032cb50498c2",
+              "parentUUID": "dd1d18dd-52ed-447f-88b7-75f2b8637f64",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "deve cadastrar quando id não existir",
+              "fullTitle": "PUT Produtos deve cadastrar quando id não existir",
+              "timedOut": null,
+              "duration": 859,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const nome = _faker.faker.commerce.productName();\nconst preco = _faker.faker.number.int();\nconst descricao = _faker.faker.commerce.productDescription();\nconst quantidade = _faker.faker.number.int();\nconst novoId = _faker.faker.number.int();\ncy.api_putProdutos(novoId, nome, preco, descricao, quantidade, jwt).then(response => {\n  expect(response.status).to.eq(201);\n  expect(response.body.message).to.contain('Cadastro realizado com sucesso');\n  expect(response.body._id).is.not.null;\n});",
+              "err": {},
+              "uuid": "95c3d4ec-92a1-46d0-bbab-4450ed48e1d5",
+              "parentUUID": "dd1d18dd-52ed-447f-88b7-75f2b8637f64",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "a07962eb-dd6b-48b7-b0df-032cb50498c2",
+            "95c3d4ec-92a1-46d0-bbab-4450ed48e1d5"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 1732,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "ad5c9f14-f177-4e81-997b-cda8014998d1",
+          "title": "Erros",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "não deve editar com quantidade inválida",
+              "fullTitle": "Erros não deve editar com quantidade inválida",
+              "timedOut": null,
+              "duration": 857,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const nome = _faker.faker.commerce.productName();\nconst preco = _faker.faker.number.int();\nconst descricao = _faker.faker.commerce.productDescription();\nconst quantidade = _faker.faker.commerce.productName();\ncy.api_putProdutos(_id, nome, preco, descricao, quantidade, jwt).then(response => {\n  expect(response.status).to.eq(400);\n  expect(response.body).to.have.property('quantidade', 'quantidade deve ser um número');\n});",
+              "err": {},
+              "uuid": "c6d623c1-eaad-46f4-b3c0-66b82d11a08a",
+              "parentUUID": "ad5c9f14-f177-4e81-997b-cda8014998d1",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "não deve editar com nome existente",
+              "fullTitle": "Erros não deve editar com nome existente",
+              "timedOut": null,
+              "duration": 1282,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const nome = _faker.faker.commerce.productName();\nconst preco = _faker.faker.number.int();\nconst descricao = _faker.faker.commerce.productDescription();\nconst quantidade = _faker.faker.number.int();\ncy.api_putProdutos(_id, nome, preco, descricao, quantidade, jwt).then(response => {\n  expect(response.status).to.eq(200);\n  expect(response.body.message).to.contain('Registro alterado com sucesso');\n  const nomeProduto2 = _faker.faker.commerce.productName();\n  cy.api_postProdutos(nomeProduto2, preco, descricao, quantidade, jwt).then(response => {\n    expect(response.status).to.eq(201);\n    const novoId = response.body._id;\n    cy.api_putProdutos(novoId, nome, preco, descricao, quantidade, jwt).then(response => {\n      expect(response.status).to.eq(400);\n      expect(response.body.message).to.contain('Já existe produto com esse nome');\n    });\n  });\n});",
+              "err": {},
+              "uuid": "bd333ce2-40fe-4138-87ec-780626091543",
+              "parentUUID": "ad5c9f14-f177-4e81-997b-cda8014998d1",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "não deve editar com campos obrigatórios inválidos",
+              "fullTitle": "Erros não deve editar com campos obrigatórios inválidos",
+              "timedOut": null,
+              "duration": 901,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const nome = '';\nconst preco = '';\nconst descricao = '';\nconst quantidade = '';\ncy.api_putProdutos(_id, nome, preco, descricao, quantidade, jwt).then(response => {\n  expect(response.status).to.eq(400);\n  expect(response.body).to.have.all.keys('nome', 'preco', 'descricao', 'quantidade');\n  expect(response.body).to.deep.include({\n    nome: 'nome não pode ficar em branco',\n    preco: 'preco deve ser um número',\n    descricao: 'descricao não pode ficar em branco',\n    quantidade: 'quantidade deve ser um número'\n  });\n});",
+              "err": {},
+              "uuid": "5e4cc4e7-5924-49f9-9103-71f0a4458a60",
+              "parentUUID": "ad5c9f14-f177-4e81-997b-cda8014998d1",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "c6d623c1-eaad-46f4-b3c0-66b82d11a08a",
+            "bd333ce2-40fe-4138-87ec-780626091543",
+            "5e4cc4e7-5924-49f9-9103-71f0a4458a60"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 3040,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

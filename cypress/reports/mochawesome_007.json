@@ -1,0 +1,144 @@
+{
+  "stats": {
+    "suites": 2,
+    "tests": 2,
+    "passes": 2,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-01-29T13:56:49.301Z",
+    "end": "2025-01-29T13:56:50.202Z",
+    "duration": 901,
+    "testsRegistered": 2,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "2dc0afa0-cb2c-4a41-abaf-39833dd576bd",
+      "title": "",
+      "fullFile": "cypress\\tests\\api\\usuarios\\deleteUsuarios.cy.js",
+      "file": "cypress\\tests\\api\\usuarios\\deleteUsuarios.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "e078487d-79e0-4d60-afb1-c23bf1e734a5",
+          "title": "DELETE Usuarios",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "deve excluir usuario com sucesso",
+              "fullTitle": "DELETE Usuarios deve excluir usuario com sucesso",
+              "timedOut": null,
+              "duration": 448,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.api_deleteUsuarios(_id).then(response => {\n  expect(response.status).to.eq(200);\n  expect(response.body.message).to.contain('Registro excluído com sucesso');\n});",
+              "err": {},
+              "uuid": "fa1ee5cc-29b6-4856-ad1c-54fc7a92220f",
+              "parentUUID": "e078487d-79e0-4d60-afb1-c23bf1e734a5",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "fa1ee5cc-29b6-4856-ad1c-54fc7a92220f"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 448,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "8d5d3cbc-3904-4df4-b722-443d25ebf30c",
+          "title": "Erros",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "não deve excluir com id inexistente",
+              "fullTitle": "Erros não deve excluir com id inexistente",
+              "timedOut": null,
+              "duration": 429,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const idInexistente = _faker.faker.number.int();\ncy.api_deleteUsuarios(idInexistente).then(response => {\n  expect(response.status).to.eq(200);\n  expect(response.body.message).to.contain('Nenhum registro excluído');\n});",
+              "err": {},
+              "uuid": "9fa6b82d-9d90-4e00-bc46-f71a1efeafd9",
+              "parentUUID": "8d5d3cbc-3904-4df4-b722-443d25ebf30c",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "9fa6b82d-9d90-4e00-bc46-f71a1efeafd9"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 429,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

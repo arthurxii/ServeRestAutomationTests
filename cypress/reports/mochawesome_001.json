@@ -1,0 +1,163 @@
+{
+  "stats": {
+    "suites": 2,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-01-29T13:56:23.937Z",
+    "end": "2025-01-29T13:56:25.175Z",
+    "duration": 1238,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "615cb287-744d-4100-b39a-a680474f8968",
+      "title": "",
+      "fullFile": "cypress\\tests\\api\\login\\postLogin.cy.js",
+      "file": "cypress\\tests\\api\\login\\postLogin.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "4ac02b2f-2ba6-4dd1-8898-b612fdaeb912",
+          "title": "POST Login",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "deve realizar login com sucesso",
+              "fullTitle": "POST Login deve realizar login com sucesso",
+              "timedOut": null,
+              "duration": 772,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.api_postLogin(email, password).then(response => {\n  expect(response.status).to.eq(200);\n  expect(response.body.message).to.contain('Login realizado com sucesso');\n  expect(response.body.authorization).to.be.not.null;\n});",
+              "err": {},
+              "uuid": "4e19acf4-b668-403e-b271-28c2a97b87c8",
+              "parentUUID": "4ac02b2f-2ba6-4dd1-8898-b612fdaeb912",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "4e19acf4-b668-403e-b271-28c2a97b87c8"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 772,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "7927f18e-2f53-4331-982c-9b99e8689e12",
+          "title": "Erros",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "não deve realizar login com email inválido",
+              "fullTitle": "Erros não deve realizar login com email inválido",
+              "timedOut": null,
+              "duration": 218,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const email = 'teste@teste';\nconst password = _faker.faker.internet.password();\ncy.api_postLogin(email, password).then(response => {\n  expect(response.status).to.eq(400);\n  expect(response.body).to.have.property('email', 'email deve ser um email válido');\n});",
+              "err": {},
+              "uuid": "be3f4b08-7b8e-497e-b36e-8a84f670d82b",
+              "parentUUID": "7927f18e-2f53-4331-982c-9b99e8689e12",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "não deve realizar login com usuario inexistente",
+              "fullTitle": "Erros não deve realizar login com usuario inexistente",
+              "timedOut": null,
+              "duration": 223,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const email = _faker.faker.internet.email();\nconst password = _faker.faker.internet.password();\ncy.api_postLogin(email, password).then(response => {\n  expect(response.status).to.eq(401);\n  expect(response.body.message).to.contain('Email e/ou senha inválidos');\n});",
+              "err": {},
+              "uuid": "f757b040-d771-46d0-8cbe-6b6fdf013652",
+              "parentUUID": "7927f18e-2f53-4331-982c-9b99e8689e12",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "be3f4b08-7b8e-497e-b36e-8a84f670d82b",
+            "f757b040-d771-46d0-8cbe-6b6fdf013652"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 441,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}
