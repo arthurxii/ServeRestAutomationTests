@@ -84,9 +84,33 @@ context('Erros', () => {
             expect(response.status).to.eq(200)
             expect(response.body.message).to.contain('Registro alterado com sucesso')
 
-            cy.api_putProdutos(_id, nome, preco, descricao, quantidade, jwt).then((response) => {
-                expect(response.status).to.eq(400)
-                expect(response.body.message).to.contain('Já existe produto com esse nome')
+            const nomeProduto2 = faker.commerce.productName()
+            cy.api_postProdutos(nomeProduto2, preco, descricao, quantidade, jwt).then((response) => {
+                expect(response.status).to.eq(201)
+                const novoId = response.body._id
+
+                cy.api_putProdutos(novoId, nome, preco, descricao, quantidade, jwt).then((response) => {
+                    expect(response.status).to.eq(400)
+                    expect(response.body.message).to.contain('Já existe produto com esse nome')
+                })
+            })
+        })
+    })
+
+    it('não deve editar com campos obrigatórios inválidos', () => {
+        const nome = ''
+        const preco = ''
+        const descricao = ''
+        const quantidade = ''
+
+        cy.api_putProdutos(_id, nome, preco, descricao, quantidade, jwt).then((response) => {
+            expect(response.status).to.eq(400)
+            expect(response.body).to.have.all.keys('nome', 'preco', 'descricao', 'quantidade');
+            expect(response.body).to.deep.include({
+                nome: 'nome não pode ficar em branco',
+                preco: 'preco deve ser um número',
+                descricao: 'descricao não pode ficar em branco',
+                quantidade: 'quantidade deve ser um número'
             })
         })
     })
