@@ -23,9 +23,12 @@ jobs:
 
       - name: Instalar dependências do projeto
         run: npm install
+      
+      - name: Ajustar permissões do Cypress
+        run: chmod +x ./node_modules/.bin/cypress
 
       - name: Executar testes Cypress (E2E e API)
-        run: npx cypress run
+        run: npx cypress run --reporter mochawesome
 
       - name: Upload do relatório Mochawesome
         uses: actions/upload-artifact@v4
