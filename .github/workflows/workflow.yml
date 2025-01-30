@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  continuous integration:
+  continuous-integration:
     runs-on: ubuntu-latest
 
     steps:
