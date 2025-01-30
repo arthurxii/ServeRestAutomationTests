@@ -69,5 +69,4 @@ context('Erros', () => {
 
         cy.cadastrarProduto(nome, preco, descricao, quantidade)
     })
-
 })
