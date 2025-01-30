@@ -1,3 +1,5 @@
+[![CI ServeRest Tests](https://github.com/arthurxii/ServeRestAutomationTests/actions/workflows/workflow.yml/badge.svg)](https://github.com/arthurxii/ServeRestAutomationTests/actions/workflows/workflow.yml)
+
 ## Descrição do projeto
 
 Projeto de testes e2e automatizados para a aplicação frontend https://front.serverest.dev/ e testes automatizados para a API https://serverest.dev/
