@@ -28,7 +28,7 @@ jobs:
         run: chmod +x ./node_modules/.bin/cypress
 
       - name: Executar testes Cypress (E2E e API)
-        run: npx cypress run --reporter mochawesome
+        run: ./node_modules/.bin/cypress run --reporter mochawesome
 
       - name: Upload do relatório Mochawesome
         uses: actions/upload-artifact@v4
