@@ -24,6 +24,9 @@ jobs:
       - name: Instalar dependências do projeto
         run: npm install
 
+      - name: Instalar o Cypress
+        run: npx cypress install
+
       - name: Executar testes Cypress (E2E e API)
         run: npx cypress run --reporter mochawesome
 
