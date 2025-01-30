@@ -86,9 +86,3 @@ context('Erros', () => {
         })
     })
 })
-
-context('Erros para usuário não administrador', () => {
-    it('não deve cadastrar com usuário não administrador', () => {
-
-    })
-})

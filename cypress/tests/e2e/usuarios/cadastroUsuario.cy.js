@@ -3,7 +3,6 @@ import { faker } from '@faker-js/faker';
 import '../../../support/commands'
 const postUsuarios = require('../../api/usuarios/requests/postUsuarios')
 
-
 const baseUrl = Cypress.config('baseUrl')
 
 beforeEach(() => {

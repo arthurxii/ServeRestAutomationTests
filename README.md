@@ -1,4 +1,5 @@
 [![CI ServeRest Tests](https://github.com/arthurxii/ServeRestAutomationTests/actions/workflows/workflow.yml/badge.svg)](https://github.com/arthurxii/ServeRestAutomationTests/actions/workflows/workflow.yml)
+[![Badge ServeRest](https://img.shields.io/badge/API-ServeRest-green)](https://github.com/ServeRest/ServeRest/)
 
 ## Descrição do projeto
 
@@ -22,7 +23,7 @@ git clone https://github.com/arthurxii/zombieplus-playwright-tests.git
 npm install
 ```
 
-2. Executar os testes em modo headless (Sem inteface gráfica do Cypress)
+2. Executar os testes em modo headless (Sem interface gráfica do Cypress)
 ```
 npx cypress run 
 ```
@@ -56,8 +57,8 @@ Segue abaixo o vídeo da execução dos testes com a interface gráfica do cypre
 
 video
 
-## CI/CD
+## Integração Contínua
 
-Para esse projeto foi implementada a integração contínua com o GitHubActions, a partir do arquivo de configuração "arquivo". A cada vez que for realizado um push ou pull request na branch main do projeto, a pipeline é executada para garantir que a aplicação está funcionando corretamente.
+Para esse projeto foi implementada a integração contínua com o GitHubActions, a partir do arquivo de configuração "workflow.yml". A cada vez que for realizado um push ou pull request na branch main do projeto, a pipeline é executada para garantir que a aplicação está funcionando corretamente.
 
 
