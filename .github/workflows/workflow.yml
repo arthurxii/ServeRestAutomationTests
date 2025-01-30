@@ -1,0 +1,35 @@
+name: ServeRest Automation Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  continuous integration:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Configurar o Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Instalar dependências do projeto
+        run: npm install
+
+      - name: Executar testes Cypress (E2E e API)
+        run: npx cypress run --reporter mochawesome
+
+      - name: Upload do relatório Mochawesome
+        uses: actions/upload-artifact@v4
+        with:
+          name: mochawesome-report
+          path: cypress/reports/mochawesome-report
+          retention-days: 7
