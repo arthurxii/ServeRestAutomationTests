@@ -56,6 +56,6 @@ video
 
 ## CI/CD
 
-Para esse projeto foi implementada a integração contínua com o GitHubActions, a partir do arquivo de configuração "arquivo". A cada vez que for realizdo um push ou pull request na branch main do projeto, a pipeline é executada para garantir que a aplicação está funcionando corretamente.
+Para esse projeto foi implementada a integração contínua com o GitHubActions, a partir do arquivo de configuração "arquivo". A cada vez que for realizado um push ou pull request na branch main do projeto, a pipeline é executada para garantir que a aplicação está funcionando corretamente.
 
 
