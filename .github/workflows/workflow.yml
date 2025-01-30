@@ -25,7 +25,7 @@ jobs:
         run: npm install
 
       - name: Executar testes Cypress (E2E e API)
-        run: cypress-io/github-action@v6
+        run: npx cypress run
 
       - name: Upload do relatório Mochawesome
         uses: actions/upload-artifact@v4
