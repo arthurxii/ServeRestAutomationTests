@@ -1,0 +1,163 @@
+{
+  "stats": {
+    "suites": 2,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-01-31T14:58:31.025Z",
+    "end": "2025-01-31T14:58:32.204Z",
+    "duration": 1179,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "d745d19c-b96f-4c20-8caf-e0aa0493e36c",
+      "title": "",
+      "fullFile": "cypress\\tests\\api\\usuarios\\getListarUsuarios.cy.js",
+      "file": "cypress\\tests\\api\\usuarios\\getListarUsuarios.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "8efadb72-5094-45fc-8622-ecb1c8a4c29e",
+          "title": "GET Usuarios",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "deve listar usuarios com sucesso",
+              "fullTitle": "GET Usuarios deve listar usuarios com sucesso",
+              "timedOut": null,
+              "duration": 697,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.api_getListarUsuarios().then(response => {\n  expect(response.status).to.eq(200);\n  expect(response.body).to.be.not.null;\n  expect(response.body.usuarios.length).to.be.greaterThan(0);\n});",
+              "err": {},
+              "uuid": "98065237-8843-493d-8a42-1473051cb930",
+              "parentUUID": "8efadb72-5094-45fc-8622-ecb1c8a4c29e",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "98065237-8843-493d-8a42-1473051cb930"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 697,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "e913ebd8-6758-44b7-969a-f6aefa2440be",
+          "title": "Erros",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "não deve listar usuário com email inválido",
+              "fullTitle": "Erros não deve listar usuário com email inválido",
+              "timedOut": null,
+              "duration": 229,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const email = 'test@email';\ncy.api_getListarUsuariosParams('email', email).then(response => {\n  expect(response.status).to.eq(400);\n  expect(response.body).to.have.property('email', 'email deve ser um email válido');\n});",
+              "err": {},
+              "uuid": "751ddcb0-b29c-458c-aec9-cfb781e69493",
+              "parentUUID": "e913ebd8-6758-44b7-969a-f6aefa2440be",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "não deve listar usuário com id inexistente",
+              "fullTitle": "Erros não deve listar usuário com id inexistente",
+              "timedOut": null,
+              "duration": 220,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const id = '1LyAt2nP4ckByHtT';\ncy.api_getListarUsuariosParams('_id', id).then(response => {\n  expect(response.status).to.eq(200);\n  expect(response.body.quantidade).to.eq(0);\n});",
+              "err": {},
+              "uuid": "91adfa48-2017-400e-87c1-04a2c58d51d8",
+              "parentUUID": "e913ebd8-6758-44b7-969a-f6aefa2440be",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "751ddcb0-b29c-458c-aec9-cfb781e69493",
+            "91adfa48-2017-400e-87c1-04a2c58d51d8"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 449,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

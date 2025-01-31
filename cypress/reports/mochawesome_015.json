@@ -1,0 +1,201 @@
+{
+  "stats": {
+    "suites": 2,
+    "tests": 5,
+    "passes": 5,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-01-31T14:59:35.866Z",
+    "end": "2025-01-31T14:59:54.689Z",
+    "duration": 18823,
+    "testsRegistered": 5,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "aa266e8a-43b2-40aa-91a0-4dd26a2b0ee2",
+      "title": "",
+      "fullFile": "cypress\\tests\\e2e\\usuarios\\cadastroUsuario.cy.js",
+      "file": "cypress\\tests\\e2e\\usuarios\\cadastroUsuario.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "ac7a0f6c-5ba9-4f8c-be33-1987b34df374",
+          "title": "Cadastro de Usuários",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "deve cadastrar usuário com sucesso",
+              "fullTitle": "Cadastro de Usuários deve cadastrar usuário com sucesso",
+              "timedOut": null,
+              "duration": 6652,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.cadastrarUsuario(usuario.nome, usuario.email, usuario.password);\ncy.get('.alert').should('be.visible');\ncy.url().should('be.equal', `${baseUrl}/home`);\ncy.get('[data-testid=\"logout\"]').should('be.visible');",
+              "err": {},
+              "uuid": "10268610-9079-4d9b-a09b-f0862fda4e7a",
+              "parentUUID": "ac7a0f6c-5ba9-4f8c-be33-1987b34df374",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "deve cadastrar usuário administrador com sucesso",
+              "fullTitle": "Cadastro de Usuários deve cadastrar usuário administrador com sucesso",
+              "timedOut": null,
+              "duration": 5852,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const email = _faker.faker.internet.email();\ncy.cadastrarUsuarioAdministrador(usuario.nome, email, usuario.password);\ncy.get('.alert').should('be.visible');\ncy.url().should('be.equal', `${baseUrl}/admin/home`);\ncy.get('[data-testid=\"logout\"]').should('be.visible');",
+              "err": {},
+              "uuid": "168c72fc-5cc3-4d65-b0aa-a01ff6199ea4",
+              "parentUUID": "ac7a0f6c-5ba9-4f8c-be33-1987b34df374",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "10268610-9079-4d9b-a09b-f0862fda4e7a",
+            "168c72fc-5cc3-4d65-b0aa-a01ff6199ea4"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 12504,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "040c0ddc-13fb-45d5-b023-a9f7b3885237",
+          "title": "Erros",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "não deve cadastrar com e-mail inválido",
+              "fullTitle": "Erros não deve cadastrar com e-mail inválido",
+              "timedOut": null,
+              "duration": 2487,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const email = 'teste@teste';\ncy.cadastrarUsuario(usuario.nome, email, usuario.password);\ncy.contains('.alert', 'Email deve ser um email válido').should('be.visible');\ncy.url().should('be.equal', `${baseUrl}/cadastrarusuarios`);",
+              "err": {},
+              "uuid": "4d351cbb-ed6f-406f-b483-7cbdcf90195b",
+              "parentUUID": "040c0ddc-13fb-45d5-b023-a9f7b3885237",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "não deve cadastrar com email já cadastrado",
+              "fullTitle": "Erros não deve cadastrar com email já cadastrado",
+              "timedOut": null,
+              "duration": 2692,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const nome = _faker.faker.person.fullName();\nconst email = _faker.faker.internet.email();\nconst password = _faker.faker.internet.password();\nconst administrador = Math.random() < 0.5 ? 'true' : 'false';\ncy.api_postUsuarios(nome, email, password, administrador).then(response => {\n  expect(response.status).to.eq(201);\n});\ncy.cadastrarUsuario(usuario.nome, email, usuario.password);\ncy.contains('.alert', 'Este email já está sendo usado').should('be.visible');",
+              "err": {},
+              "uuid": "07ffd544-da3c-4f26-81a3-6993f83f3597",
+              "parentUUID": "040c0ddc-13fb-45d5-b023-a9f7b3885237",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "não deve cadastrar com campos obrigatórios vazios",
+              "fullTitle": "Erros não deve cadastrar com campos obrigatórios vazios",
+              "timedOut": null,
+              "duration": 1029,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.cadastrarUsuarioComCamposVazios();\ncy.contains('.form', 'Nome é obrigatório').should('be.visible');\ncy.contains('.form', 'Email é obrigatório').should('be.visible');\ncy.contains('.form', 'Password é obrigatório').should('be.visible');\ncy.url().should('be.equal', `${baseUrl}/cadastrarusuarios`);",
+              "err": {},
+              "uuid": "3d7f8258-0f38-4469-bc00-4b3eefd42936",
+              "parentUUID": "040c0ddc-13fb-45d5-b023-a9f7b3885237",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "4d351cbb-ed6f-406f-b483-7cbdcf90195b",
+            "07ffd544-da3c-4f26-81a3-6993f83f3597",
+            "3d7f8258-0f38-4469-bc00-4b3eefd42936"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 6208,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}
