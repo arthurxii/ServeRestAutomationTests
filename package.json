@@ -11,7 +11,7 @@
   "keywords": [],
   "author": "Arthur Henrique",
   "license": "ISC",
-  "description": "",
+  "description": "Projeto de testes e2e automatizados para a aplicação frontend https://front.serverest.dev/ e testes automatizados para a API https://serverest.dev/",
   "devDependencies": {
     "@faker-js/faker": "^9.4.0",
     "cypress": "^14.0.0",
