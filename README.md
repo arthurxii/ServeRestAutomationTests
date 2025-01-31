@@ -53,12 +53,8 @@ Segue abaixo o mapa mental com os cenários de teste (Obs: Para esse momento, fo
 
 <p align="center"><img src="ServeRestMindMap.png" width="90%"/></p>
 
-Segue abaixo o vídeo da execução dos testes com a interface gráfica do cypress:
-
-video
-
 ## Integração Contínua
 
-Para esse projeto foi implementada a integração contínua com o GitHubActions, a partir do arquivo de configuração "workflow.yml". A cada vez que for realizado um push ou pull request na branch main do projeto, a pipeline é executada para garantir que a aplicação está funcionando corretamente.
+Para esse projeto foi implementada a integração contínua com o GitHub Actions, a partir do arquivo de configuração "workflow.yml". A cada vez que for realizado um push ou pull request na branch main do projeto, a pipeline é executada para garantir que a aplicação está funcionando corretamente.
 
 

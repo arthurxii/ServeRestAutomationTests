@@ -77,23 +77,24 @@ context('Erros', () => {
             expect(response.body.message).to.contain('Este email já está sendo usado')
         })
     })
-})
+    it('não deve editar com campos obrigatórios vazios', () => {
+        const nome = ''
+        const email = ''
+        const password = ''
+        const administrador = ''
+        const _id = faker.number.int()
 
-it('não deve editar com campos obrigatórios vazios', () => {
-    const nome = ''
-    const email = ''
-    const password = ''
-    const administrador = ''
-    const _id = faker.number.int()
-
-    cy.api_putUsuarios(_id, nome, email, password, administrador).then((response) => {
-        expect(response.status).to.eq(400)
-        expect(response.body).to.have.all.keys('nome', 'email', 'password', 'administrador');
-        expect(response.body).to.deep.include({
-            nome: 'nome não pode ficar em branco',
-            email: 'email não pode ficar em branco',
-            password: 'password não pode ficar em branco',
-            administrador: "administrador deve ser 'true' ou 'false'"
+        cy.api_putUsuarios(_id, nome, email, password, administrador).then((response) => {
+            expect(response.status).to.eq(400)
+            expect(response.body).to.have.all.keys('nome', 'email', 'password', 'administrador');
+            expect(response.body).to.deep.include({
+                nome: 'nome não pode ficar em branco',
+                email: 'email não pode ficar em branco',
+                password: 'password não pode ficar em branco',
+                administrador: "administrador deve ser 'true' ou 'false'"
+            })
         })
     })
 })
+
+

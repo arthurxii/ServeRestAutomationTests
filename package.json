@@ -3,10 +3,13 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "cy:run": "npx cypress run",
+    "cy:open": "npx cypress open",
+    "cy:run e2e": "npx cypress run --spec 'cypress/tests/e2e/**/*.cy.js'",
+    "cy:run api": "npx cypress run --spec 'cypress/tests/api/**/*.cy.js'"
   },
   "keywords": [],
-  "author": "",
+  "author": "Arthur Henrique",
   "license": "ISC",
   "description": "",
   "devDependencies": {

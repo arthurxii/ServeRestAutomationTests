@@ -1,0 +1,201 @@
+{
+  "stats": {
+    "suites": 2,
+    "tests": 5,
+    "passes": 5,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-01-31T00:14:20.320Z",
+    "end": "2025-01-31T00:14:33.592Z",
+    "duration": 13272,
+    "testsRegistered": 5,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "3dbebc67-e2c5-44b3-8834-7a9fe239ee61",
+      "title": "",
+      "fullFile": "cypress\\tests\\e2e\\login\\login.cy.js",
+      "file": "cypress\\tests\\e2e\\login\\login.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "c0b625b1-42b5-4a84-bd07-e58b32f4b0c3",
+          "title": "Login",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "deve realizar login com sucesso",
+              "fullTitle": "Login deve realizar login com sucesso",
+              "timedOut": null,
+              "duration": 5512,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const nome = _faker.faker.person.fullName();\nconst email = _faker.faker.internet.email();\nconst password = _faker.faker.internet.password();\nconst administrador = 'false';\ncy.api_postUsuarios(nome, email, password, administrador).then(response => {\n  expect(response.status).to.eq(201);\n});\ncy.login(email, password);\ncy.url().should('be.equal', `${baseUrl}/home`);\ncy.get('[data-testid=\"logout\"]').should('be.visible');",
+              "err": {},
+              "uuid": "f2965e22-29c3-4dd1-8f77-9d033e410d2a",
+              "parentUUID": "c0b625b1-42b5-4a84-bd07-e58b32f4b0c3",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "deve realizar login com usuário admininistrador com sucesso",
+              "fullTitle": "Login deve realizar login com usuário admininistrador com sucesso",
+              "timedOut": null,
+              "duration": 2450,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const nome = _faker.faker.person.fullName();\nconst email = _faker.faker.internet.email();\nconst password = _faker.faker.internet.password();\nconst administrador = 'true';\ncy.api_postUsuarios(nome, email, password, administrador).then(response => {\n  expect(response.status).to.eq(201);\n});\ncy.login(email, password);\ncy.url().should('be.equal', `${baseUrl}/admin/home`);\ncy.get('[data-testid=\"logout\"]').should('be.visible');\ncy.contains('.lead', 'Este é seu sistema para administrar seu ecommerce.').should('be.visible');",
+              "err": {},
+              "uuid": "b0acf4ff-fbdd-417c-8d4a-b7193ebbe681",
+              "parentUUID": "c0b625b1-42b5-4a84-bd07-e58b32f4b0c3",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "f2965e22-29c3-4dd1-8f77-9d033e410d2a",
+            "b0acf4ff-fbdd-417c-8d4a-b7193ebbe681"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 7962,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        },
+        {
+          "uuid": "d878954a-12c6-4b2f-bc7d-596f77c53137",
+          "title": "Erros",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "não deve realizar login com usuário inexistente",
+              "fullTitle": "Erros não deve realizar login com usuário inexistente",
+              "timedOut": null,
+              "duration": 2260,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const email = _faker.faker.internet.email();\nconst password = _faker.faker.internet.password();\ncy.login(email, password);\ncy.contains('.alert', 'Email e/ou senha inválidos').should('be.visible');\ncy.url().should('be.equal', `${baseUrl}/login`);",
+              "err": {},
+              "uuid": "99ce732c-9b1f-4f79-ace5-4d546b39238e",
+              "parentUUID": "d878954a-12c6-4b2f-bc7d-596f77c53137",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "não deve realizar login com email inválido",
+              "fullTitle": "Erros não deve realizar login com email inválido",
+              "timedOut": null,
+              "duration": 1975,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "const email = 'teste@teste';\nconst password = _faker.faker.internet.password();\ncy.login(email, password);\ncy.contains('.alert', 'Email deve ser um email válido').should('be.visible');\ncy.url().should('be.equal', `${baseUrl}/login`);",
+              "err": {},
+              "uuid": "35ab24de-d4cc-4f95-a4f2-f89b9e75615d",
+              "parentUUID": "d878954a-12c6-4b2f-bc7d-596f77c53137",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "não deve realizar login com campos obrigatórios vazios",
+              "fullTitle": "Erros não deve realizar login com campos obrigatórios vazios",
+              "timedOut": null,
+              "duration": 959,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.loginComCamposVazios();\ncy.contains('.form', 'Email é obrigatório').should('be.visible');\ncy.contains('.form', 'Password é obrigatório').should('be.visible');\ncy.url().should('be.equal', `${baseUrl}/login`);",
+              "err": {},
+              "uuid": "829fbd69-f0ff-4622-8d4a-065bda37b031",
+              "parentUUID": "d878954a-12c6-4b2f-bc7d-596f77c53137",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "99ce732c-9b1f-4f79-ace5-4d546b39238e",
+            "35ab24de-d4cc-4f95-a4f2-f89b9e75615d",
+            "829fbd69-f0ff-4622-8d4a-065bda37b031"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 5194,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}
